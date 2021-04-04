@@ -42,13 +42,13 @@ $(document).ready(function () {
             var description = item.description
             var server = item.server
             if(item.id == false || null) {
-                var b = (`<button id="normalbutton" data-trigger="`+item.trigger+`" data-parm="`+item.par+`" class = "btn"><div class="title">`+title+`</div><div class="description" >`+description+`</div></button>`)
+                var b = (`<button id="normalbutton" data-type="`+item.type+`" data-trigger="`+item.trigger+`" data-param="`+item.par+`" class = "btn"><div class="title">`+title+`</div><div class="description" >`+description+`</div></button>`)
                 $(".container").fadeIn(500)
                 buttons.push(b)
                 $(".container").append(b).fadeIn(400)
                 return
             } else {
-                var b = (`<button id="`+item.id+`"data-trigger="`+item.trigger+`" data-parm="`+item.par+`" class = "a btn"><div class="title">`+title+`</div><div class="description" >`+description+`</div></button>`)
+                var b = (`<button id="`+item.id+`" data-type="`+item.type+`" data-trigger="`+item.trigger+`" data-param="`+item.par+`" class = "a btn"><div class="title">`+title+`</div><div class="description" >`+description+`</div></button>`)
                 $(".container").fadeIn(500)
                 buttons.push(b)
                 $(".container").append(b).fadeIn(400)
@@ -65,6 +65,7 @@ $(document).ready(function () {
             submenus.push(aa)
 
         }
+        
     });
 
     //  FUNCTION 
@@ -76,7 +77,7 @@ $(document).ready(function () {
 
     // Events
     $("body").on("click" , ".a" , function(){
-        $.post('http://br-menu/clicked', JSON.stringify({trigger:$(this).attr("data-trigger") , param:$(this).attr("data-parm")}));
+        $.post('http://br-menu/clicked', JSON.stringify({type:$(this).attr("data-type"), trigger:$(this).attr("data-trigger"), param:$(this).attr("data-param")}));
         $.post('http://br-menu/close', JSON.stringify({}));
         $(".container").fadeOut('slow')
         setTimeout(() => {
@@ -87,10 +88,9 @@ $(document).ready(function () {
         buttons.length = 0
         submenus.length = 0
 
-
     })
     $("body").on("click" , "#normalbutton" , function(){
-        $.post('http://br-menu/clicked', JSON.stringify({trigger:$(this).attr("data-trigger") , param:$(this).attr("data-parm")}));
+        $.post('http://br-menu/clicked', JSON.stringify({type:$(this).attr("data-type"), trigger:$(this).attr("data-trigger"), param:$(this).attr("data-param")}));
         $.post('http://br-menu/close', JSON.stringify({}));
         $(".container").fadeOut('slow')
         setTimeout(() => {
@@ -99,7 +99,6 @@ $(document).ready(function () {
         $("#title").html('')
         buttons.length = 0
         submenus.length = 0
-
 
     })
     
@@ -143,9 +142,7 @@ $(document).ready(function () {
 
             }
         }
-           
 
-        
     })
 
 });
