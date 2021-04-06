@@ -13,3 +13,13 @@ exports['br-menu']:AddButton("Button Text Title" , "Description" ,'trigger(examp
    
  
 4. How to create sub menu (category)
+exports['br-menu']:SubMenu("Sub Menu Title" , "Description" , "menu name for example: menuname" )
+
+
+~~~~~~~~~~~~
+
+Example of full using:
+exports['br-menu']:SetTitle("Your Title Here")
+exports['br-menu']:SubMenu("Just a sub menu" , "Description" , "menuone" )
+exports['br-menu']:AddButton("Button Title" , "Description" ,'police:cuff' ,true ,"menuone"')
+   
